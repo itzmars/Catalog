@@ -31,3 +31,4 @@ D:\Development\Catalog\obj\Debug\net8.0\refint\Catalog.dll
 D:\Development\Catalog\obj\Debug\net8.0\Catalog.pdb
 D:\Development\Catalog\obj\Debug\net8.0\Catalog.genruntimeconfig.cache
 D:\Development\Catalog\obj\Debug\net8.0\ref\Catalog.dll
+D:\Development\Catalog\obj\Debug\net8.0\Catalog.sourcelink.json
