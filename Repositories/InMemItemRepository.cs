@@ -14,6 +14,10 @@ namespace Catalog.Repositories
             new Item{ Id= Guid.NewGuid(), Name = " Item4", Price=5}
         ];
 
+        public InMemItemRepository()
+        {
+        }
+
         public IEnumerable<Item> GetItems()
         {
             return items;
@@ -29,7 +33,11 @@ namespace Catalog.Repositories
             items.Add(item);
         }
 
-   
+        public void UpdateItem(Item item)
+        {
+            var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
+            items[index] = item;
+        }
 
     }
 }
