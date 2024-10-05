@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "C#: Catalog Debug",
             "type": "dotnet",
@@ -16,21 +17,6 @@
             "request": "attach"
         },
         {
-            "name": "C#: Catalog Debug",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/Catalog.csproj"
-        },
-        {
-            "name": "Launch and Debug Hosted Blazor WebAssembly App",
-            "type": "blazorwasm",
-            "request": "launch",
-            "hosted": true,
-            "program": "${workspaceFolder}/bin/Debug/net8.0/Catalog.dll",
-            "cwd": "${workspaceFolder}"
-        },
-
-        {
             "name": "Launch and Debug Hosted Blazor WebAssembly App",
             "type": "blazorwasm",
             "request": "launch",
@@ -44,21 +30,6 @@
             "request": "attach",
             "type": "chrome",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "request": "attach",
-            "type": "chrome",
-            "webRoot": "${workspaceFolder}"
-        },
-
-
-        {
-            "name": "C#: ${defaultBuildTask} Debug",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/Catalog.csproj"
         },
 
         {
