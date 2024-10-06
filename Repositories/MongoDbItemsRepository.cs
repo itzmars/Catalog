@@ -9,6 +9,8 @@ namespace Catalog.Repositories
         private const string DatabaseName = "Catalog";
         private const string CollectionName = "Items";
         private readonly IMongoCollection<Item> itemCollection;
+        private readonly FilterDefinitionBuilder<Item> filterDefinition = Builders<Item>.Filter;
+
         public MongoDbItemsRepository(IMongoClient mongoClient) { 
             IMongoDatabase database = mongoClient.GetDatabase(DatabaseName);
             itemCollection = database.GetCollection<Item>(CollectionName);
@@ -20,26 +22,30 @@ namespace Catalog.Repositories
             itemCollection.InsertOne(item);
         }
 
+        public IEnumerable<Item> GetItems()
+        {
+            return itemCollection.Find(item=>true).ToList();
+        }
+
 
         public Item GetItem(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterDefinition.Eq(item => item.Id, id);
+            return itemCollection.Find(item => item.Id == id).SingleOrDefault();
         }
 
-        public IEnumerable<Item> GetItems()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public void UpdateItem(Item item)
         {
-            throw new NotImplementedException();
+            var filter = filterDefinition.Eq(ExistingItem => ExistingItem.Id, item.Id);
+            itemCollection.ReplaceOne(filter, item);
         }
 
 
         public void DeleteItem(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterDefinition.Eq(item => item.Id, id);
+            itemCollection.DeleteOne(filter);
         }
     }
 }
