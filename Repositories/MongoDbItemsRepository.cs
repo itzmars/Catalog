@@ -1,4 +1,5 @@
 using Catalog.Entities;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Catalog.Repositories
@@ -17,35 +18,35 @@ namespace Catalog.Repositories
 
         }
 
-        public void CreateItem(Item item)
+        public async Task CreateItemAsync(Item item)
         {
-            itemCollection.InsertOne(item);
+            await itemCollection.InsertOneAsync(item);
         }
 
-        public IEnumerable<Item> GetItems()
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            return itemCollection.Find(item=>true).ToList();
+            return await itemCollection.Find(new BsonDocument()).ToListAsync();
         }
 
 
-        public Item GetItem(Guid id)
+        public async Task<Item> GetItemAsync(Guid id)
         {
             var filter = filterDefinition.Eq(item => item.Id, id);
-            return itemCollection.Find(item => item.Id == id).SingleOrDefault();
+            return await itemCollection.Find(item => item.Id == id).SingleOrDefaultAsync();
         }
 
       
-        public void UpdateItem(Item item)
+        public async Task UpdateItemAsync(Item item)
         {
             var filter = filterDefinition.Eq(ExistingItem => ExistingItem.Id, item.Id);
-            itemCollection.ReplaceOne(filter, item);
+            await itemCollection.ReplaceOneAsync(filter, item);
         }
 
 
-        public void DeleteItem(Guid id)
+        public async Task DeleteItemAsync(Guid id)
         {
             var filter = filterDefinition.Eq(item => item.Id, id);
-            itemCollection.DeleteOne(filter);
+            await itemCollection.DeleteOneAsync(filter);
         }
     }
 }
