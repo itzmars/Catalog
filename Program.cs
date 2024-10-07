@@ -33,7 +33,11 @@ builder.Services.AddScoped<IItemsRepository, MongoDbItemsRepository>();
 
 //builder.Services.AddSingleton<IItemsRepository, InMemItemRepository>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => 
+{
+    // SuppressAsyncSuffixInActionNames is set to false
+    options.SuppressAsyncSuffixInActionNames = false;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

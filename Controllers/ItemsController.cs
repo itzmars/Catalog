@@ -43,7 +43,7 @@ namespace Catalog.Controllers
 
         // Post /item
         [HttpPost]
-        public async Task<ActionResult<ItemDto>> CreateItem(CreateItemDto itemDto)
+        public async Task<ActionResult<ItemDto>> CreateItemAsync(CreateItemDto itemDto)
         {
             Item item = new()
             {
@@ -82,7 +82,7 @@ namespace Catalog.Controllers
 
         //Delelete /items/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteItem(Guid id){
+        public async Task<ActionResult> DeleteItemAsync(Guid id){
             var existingItem = _repository.GetItemAsync(id);
 
             if (existingItem is null)
